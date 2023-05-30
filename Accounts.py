@@ -1,12 +1,13 @@
 import datetime as dt
 import typing   # can't seem to get this to work, but I want to try...?
+import pandas as pd
 
 
 class Account:
     """Base Account Class"""
 
     # List to keep track of transactions
-    transactions = []
+    transactions: pd.DataFrame()
 
     # information about the account
     name: str       # The ':' seems to be a typing thing, but doesn't work to me right now...
@@ -20,10 +21,14 @@ class Account:
         self.cDate = creationDate
         self.eDate = endDate
 
-    def writeTransactions(self,transactions) -> bool:
+    def writeTransactions(self, transactions) -> bool:
         # Writes the transaction dataframe to a txt file of some sort, returning if success or fail
         return
 
+    def readTransactions(self) -> bool:
+        # read in transactions from file, setting transactions variable - try to do only once when you start program
+        # self.transactions = ...
+        return
 
 class Savings(Account):
     """Savings Accounts"""
