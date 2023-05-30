@@ -9,7 +9,7 @@ class Account:
     transactions = []
 
     # information about the account
-    name: str       # The ':' seems to be a typing thing, but doesn't work to me right now... str doesn't even show up in a color.
+    name: str       # The ':' seems to be a typing thing, but doesn't work to me right now...
     bank: str
     cDate: dt.time()
     eDate: None
@@ -19,6 +19,10 @@ class Account:
         self.bank = bank
         self.cDate = creationDate
         self.eDate = endDate
+
+    def writeTransactions(self,transactions) -> bool:
+        # Writes the transaction dataframe to a txt file of some sort, returning if success or fail
+        return
 
 
 class Savings(Account):
@@ -40,3 +44,16 @@ class CreditCard(Account):
     def __init__(self, name, bank, creationDate, endDate, billDay) -> None:
         self.billDay = billDay
         super().__init__(name, bank, creationDate, endDate)
+
+
+class CCPoints(Account): # maybe we don't want this to inherit from account, but just hold a credit card..? maybe inherit from credit card...? not sure
+    """Account to hold number of Credit Card Points"""
+    
+    cc: CreditCard
+    points: float
+
+    def __init__(self, creditCard, startPoints) -> None:
+        self.cc = creditCard
+        self.points = startPoints
+
+        super().__init__(creditCard.name, creditCard.bank, creditCard.creationDate, creditCard.endDate)
